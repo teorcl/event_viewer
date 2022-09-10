@@ -47,7 +47,8 @@ class LoginWidget extends StatelessWidget {
                             primary: Colors.lightGreen),
                         onPressed: () {
                           if((userController.text).isEmpty || (passController.text).isEmpty){
-                              print("Usuario o contraseña vacios");
+                              //print("Usuario o contraseña vacios");
+                              ScaffoldMessenger.of(context).showSnackBar(const SnackBar(content: Text("Usuario o contraseña vacios"),));
                           }else{
                             ingresoServices.login(
                                 userController.text, 
