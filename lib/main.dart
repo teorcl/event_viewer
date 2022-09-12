@@ -1,3 +1,4 @@
+import 'package:event_viewer/pages/home_page.dart';
 import 'package:event_viewer/pages/login_page.dart';
 import 'package:event_viewer/pages/otp_page.dart';
 import 'package:event_viewer/pages/sigin_page.dart';
@@ -30,6 +31,7 @@ class _MyAppState extends State<MyApp> {
         "login": (context) => const LoginPage(),
         "register": (context) => const SiginPage(),
         "otp": (context) => const OTPPage(),
+        "home":(context) => const HomePage()
       },
     );
   }

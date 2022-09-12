@@ -23,7 +23,7 @@ class OTPWidget extends StatelessWidget {
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
-              const TituloWidget(mensaje: "Ingresa el codigo"),
+              const TituloWidget(mensaje: "Ingrese el codigo de verificación"),
               Text("El codigo fue enviado al correo: ${args[1]}"),
               const SizedBox(
                 height: 40,

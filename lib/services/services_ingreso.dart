@@ -35,7 +35,9 @@ class IngresoServices {
     }
   }
 
+  /*Método para el registro*/
   Future register(String username, String pass, String email) async {
+    
     var headers = {'Content-Type': 'application/json'};
     var request = http.Request('POST', Uri.parse('$ip/reto/usuarios/registro/enviar'));
     
@@ -57,9 +59,11 @@ class IngresoServices {
     }
   }
 
+
+  //==============Método para el consumo del código de verificación==============
   Future otp(String code, String username) async {
-    var request = http.MultipartRequest(
-        'POST', Uri.parse('$ip/reto/usuarios/registro/confirmar/$username'));
+    var request = http.MultipartRequest('POST', Uri.parse('$ip/reto/usuarios/registro/confirmar/$username'));
+    
     request.fields.addAll({'codigo': code});
 
     http.StreamedResponse response = await request.send();

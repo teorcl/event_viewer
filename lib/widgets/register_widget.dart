@@ -65,12 +65,19 @@ class RegisterWidget extends StatelessWidget {
                         style: ElevatedButton.styleFrom(
                             primary: Colors.lightGreen),
                         onPressed: () {
-                          ingresoServices.register(userController.text,
+
+                          if(userController.text.isEmpty || passController.text.isEmpty || emailController.text.isEmpty ){
+                            ScaffoldMessenger.of(context).showSnackBar(const SnackBar(content: Text("Uno o varios campos están vaciós"),));
+                          } else{
+                            ingresoServices.register(userController.text,
                               passController.text, emailController.text);
-                          Navigator.pushNamed(context, "otp", arguments: [
+                            Navigator.pushNamed(context, "otp", arguments: [
                             userController.text,
                             emailController.text
                           ]);
+
+                          }
+
                         },
                         child: const Text("Registrarse"))),
               ),

@@ -26,7 +26,7 @@ class LoginWidget extends StatelessWidget {
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
-              const TituloWidget(mensaje: "Castillos Ingreso"),
+              const TituloWidget(mensaje: "Visualizador de Eventos"),
               const Image(
                 image: AssetImage("assets/logo.png"),
                 width: 250,
@@ -54,6 +54,7 @@ class LoginWidget extends StatelessWidget {
                                 userController.text, 
                                 passController.text
                               );
+                              Navigator.pushNamed(context, "home");
                           }
                         },
                         child: const Text("Login"))),
