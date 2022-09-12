@@ -26,7 +26,7 @@ class LoginWidget extends StatelessWidget {
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
-              const TituloWidget(mensaje: "Visualizador de Eventos"),
+        
               const Image(
                 image: AssetImage("assets/logo.png"),
                 width: 250,
