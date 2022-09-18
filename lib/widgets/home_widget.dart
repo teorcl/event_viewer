@@ -9,6 +9,9 @@ class HomeWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+
+    
+
     return   Scaffold(
       drawer: NavBar(),
       appBar: AppBar(title: const Text("Visualizador de eventos", style: TextStyle(color: Colors.black12),),

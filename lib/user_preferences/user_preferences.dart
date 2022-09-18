@@ -3,8 +3,8 @@ import 'package:shared_preferences/shared_preferences.dart';
 class PreferenciasUsuario {
   static final PreferenciasUsuario _instancia = PreferenciasUsuario._internal();
 
-  factory PreferenciasUsuario() {
-    return _instancia;
+  factory PreferenciasUsuario() { //Esto se hace para que al instanciar preferencia de usuario
+    return _instancia;            //en cualquier parte siemore me retorne la misma instancia 
   }
 
   PreferenciasUsuario._internal();

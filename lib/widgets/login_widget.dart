@@ -1,5 +1,6 @@
 import 'package:event_viewer/widgets/titulo_widget.dart';
 import 'package:flutter/material.dart';
+import 'package:http/http.dart';
 
 import '../services/services_ingreso.dart';
 import '../user_preferences/user_preferences.dart';
@@ -10,6 +11,7 @@ class LoginWidget extends StatelessWidget {
 
   final TextEditingController userController = TextEditingController();
   final TextEditingController passController = TextEditingController();
+  String token = ""; //Almacenar el token que se gnera al loguearse
 
   @override
   Widget build(BuildContext context) {
@@ -44,7 +46,7 @@ class LoginWidget extends StatelessWidget {
                     height: 50,
                     child: ElevatedButton(
                         style: ElevatedButton.styleFrom(
-                            primary: Colors.lightGreen),
+                            primary:  Colors.lightGreen),
                         onPressed: () {
                           if((userController.text).isEmpty || (passController.text).isEmpty){
                               //print("Usuario o contraseña vacios");
@@ -52,9 +54,10 @@ class LoginWidget extends StatelessWidget {
                           }else{
                             ingresoServices.login(
                                 userController.text, 
-                                passController.text
+                                passController.text,
+                               // token = response.stream.bytesToString();
                               );
-                              Navigator.pushNamed(context, "home");
+                              Navigator.pushNamed(context, "home",arguments: [userController.text,token]);
                           }
                         },
                         child: const Text("Login"))),

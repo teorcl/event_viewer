@@ -1,4 +1,5 @@
 import 'dart:convert';
+import 'package:event_viewer/models/evento_model.dart';
 import 'package:http/http.dart' as http;
 import '../user_preferences/user_preferences.dart';
 
@@ -35,6 +36,8 @@ class IngresoServices {
     }
   }
 
+//============================================================================================
+//============================================================================================
   /*Método para el registro*/
   Future register(String username, String pass, String email) async {
     
@@ -60,7 +63,8 @@ class IngresoServices {
   }
 
 
-  //==============Método para el consumo del código de verificación==============
+//============================================================================================
+//==============Método para el consumo del código de verificación==============
   Future otp(String code, String username) async {
     var request = http.MultipartRequest('POST', Uri.parse('$ip/reto/usuarios/registro/confirmar/$username'));
     
@@ -74,4 +78,40 @@ class IngresoServices {
       print(response.reasonPhrase);
     }
   }
+
+//============================================================================================
+//==============Método para el consuma de la lista de eventos==============  
+  Future<List<EventoModel>> getEvento() async {
+    var headers = {
+      'Authorization': 'Bearer ${prefs.token}',
+      'Cookie': 'color=rojo'
+    };
+    var request = http.Request('GET', Uri.parse('$ip/reto/events/eventos/listar'));
+
+    request.headers.addAll(headers);
+
+    http.StreamedResponse response = await request.send();
+
+    final decodeEventos = jsonDecode(await response.stream.bytesToString());
+    final List<EventoModel> eventos = [];
+
+    print(decodeEventos);
+
+    decodeEventos.forEach((value){
+        eventos.add(EventoModel.fromJson(value)); 
+      }
+      
+    );
+
+    if (response.statusCode == 200) {
+      print(await response.stream.bytesToString());
+      return eventos;
+    }
+    else {
+      print(response.reasonPhrase);
+      return [];
+    }
+
+  }
+
 }
